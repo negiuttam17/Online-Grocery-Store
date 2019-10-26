@@ -1,0 +1,248 @@
+{% extends "layout.html" %}
+{% block style %}
+
+<style type="text/css">
+    
+
+    .w3l_banner_nav_right_banner{
+    background:url(/asset/slider/{{allSliders[0].image}}) no-repeat 0px 0px;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -ms-background-size:cover;
+}
+.w3l_banner_nav_right_banner1{
+    background:url(/asset/slider/{{allSliders[1].image}}) no-repeat 0px 0px;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -ms-background-size:cover;
+}
+.w3l_banner_nav_right_banner2{
+    background:url(/asset/slider/{{allSliders[2].image}}) no-repeat 0px 0px;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -ms-background-size:cover;
+}
+
+
+
+</style>
+{% endblock %}
+{% block main %}
+
+
+{% if auth.allData == '1' %}
+<div class="w3l_banner_nav_right">
+    <section >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>admin panel</h1>
+                </div>
+                <div class="col-md-4">
+                    <h1>admin panel</h1>
+                </div>
+                <div class="col-md-4">
+                    <h1>admin panel</h1>
+                </div>
+            </div>
+        </div>      
+    </section>
+</div>
+ 
+
+{% else %}
+<div class="w3l_banner_nav_right">
+    <section class="slider">
+        <div class="flexslider">
+            <ul class="slides">
+                 <li>
+                    <div class="w3l_banner_nav_right_banner">
+                        <h3><span>{{allSliders[0].description}}</span></h3>
+                        <div class="more">
+                            <a href="" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="w3l_banner_nav_right_banner1">
+                        <h3><span>{{allSliders[1].description}}</span></h3>
+                        <div class="more">
+                            <a href="" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="w3l_banner_nav_right_banner2">
+                        <h3><span>{{allSliders[2].description}}</span></h3>
+                        <div class="more">
+                            <a href="" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                        </div>
+                    </div>
+                </li> 
+                
+            </ul>
+        </div>
+    </section>
+    <!-- flexSlider -->
+        <link rel="stylesheet" href="/asset/css/flexslider.css" type="text/css" media="screen" property="" />
+        <script defer src="/asset/js/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+        $(window).load(function(){
+          $('.flexslider').flexslider({
+            animation: "slide",
+            start: function(slider){
+              $('body').removeClass('loading');
+            }
+          });
+        });
+      </script>
+    <!-- //flexSlider -->
+</div>
+<!-- banner -->
+    <div class="banner_bottom">
+        <div class="wthree_banner_bottom_left_grid_sub">
+        </div>
+        <div class="wthree_banner_bottom_left_grid_sub1">
+            {% for banner in banners %}
+                <div class="col-md-4 wthree_banner_bottom_left">
+                    <div class="wthree_banner_bottom_left_grid">
+                       <!-- <a href="/bannerPage/{{banner.id}}">  --><img src="/asset/banner/{{banner.id }}.jpg" alt=" " class="img-responsive" />
+                        <div class="{{banner.class}}" style="margin-top: 20px;">
+                            <h3>{{banner.text}} <span>{{banner.tag}}</span></h3><!-- </a> -->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}               
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+
+<!-- top-brands -->
+    <div class="top-brands">
+        <div class="container">
+            <h3>Hot Offers</h3>
+            <div class="agile_top_brands_grids">
+
+            {% for offer in hotOffers %}
+                <div class="col-md-3  top_brand_left" style="margin-top: 20px;">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+
+                        {% if offer.tag == 1 %}
+                            <div class="tag"><img src="/asset/images/tag.png" alt=" " class="img-responsive" /></div>
+                        {% else %}
+                        {% endif %}
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block" >
+                                        <div class="snipcart-thumb">
+                                            <a href="/hotOffer/{{offer.id}}"><img title=" " alt=" " style="width: 140px; height: 140px;" src="/asset/products/{{offer.image}}" /></a>      
+                                            <p style="text-align: center;">{{offer.product_name}}({{offer.quantity}})</p>
+                                            <p style="text-align: center;">{{offer.brand_name}}</p>
+                                            <h4 style="text-align: center;">${{offer.price}} <span>${{offer.offer_price}}</span></h4>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="/checkout" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart" />
+                                                    <input type="hidden" name="add" value="1" />
+                                                    <input type="hidden" name="business" value="{{offer.id}} " />
+                                                    <!-- <input type="hidden" name="item_id" value="{{offer.id}} " /> -->
+                                                    <input type="hidden" name="item_name" value="{{offer.product_name}}" />
+                                                    <input type="hidden" name="amount" value="{{offer.price}}" />
+                                                    <input type="hidden" name="discount_amount" value="{{offer.price  - offer.offer_price}} " />
+                                                    <input type="hidden" name="currency_code" value="USD" />
+                                                    <input type="hidden" name="return" value=" " />
+                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button" />
+                                                </fieldset>                                                    
+                                            </form>                                    
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}            
+            <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+<!-- //top-brands -->
+<!-- fresh-vegetables -->
+    <div class="fresh-vegetables">
+        <div class="container">
+            <h3>Top Products</h3>
+            <div class="w3l_fresh_vegetables_grids">
+                <div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
+                    <div class="w3l_fresh_vegetables_grid2">
+                        <ul>
+                            {% for categoryList in categoryLists | slice(0,8) %}
+                                <li><i class="fa fa-check" aria-hidden="true"></i><a href="/categoryPage/{{categoryList.slug}}">{{categoryList.category_name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9 w3l_fresh_vegetables_grid_right">
+                    <div class="col-md-4 w3l_fresh_vegetables_grid">
+                        <div class="w3l_fresh_vegetables_grid1">
+                            <img src="/asset/images/8.jpg" alt=" " class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 w3l_fresh_vegetables_grid">
+                        <div class="w3l_fresh_vegetables_grid1">
+                            <div class="w3l_fresh_vegetables_grid1_rel">
+                                <img src="/asset/images/7.jpg" alt=" " class="img-responsive" />
+                                <div class="w3l_fresh_vegetables_grid1_rel_pos">
+                                    <div class="more m1">
+                                        <a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3l_fresh_vegetables_grid1_bottom">
+                            <img src="/asset/images/10.jpg" alt=" " class="img-responsive" />
+                            <div class="w3l_fresh_vegetables_grid1_bottom_pos">
+                                <h5>Special Offers</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 w3l_fresh_vegetables_grid">
+                        <div class="w3l_fresh_vegetables_grid1">
+                            <img src="/asset/images/9.jpg" alt=" " class="img-responsive" />
+                        </div>
+                        <div class="w3l_fresh_vegetables_grid1_bottom">
+                            <img src="/asset/images/11.jpg" alt=" " class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <div class="agileinfo_move_text">
+                        <div class="agileinfo_marquee">
+                            <h4>get <span class="blink_me">25% off</span> on first order and also get gift voucher</h4>
+                        </div>
+                        <div class="agileinfo_breaking_news">
+                            <span> </span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}      
+
+
+ 
+{% endblock %}

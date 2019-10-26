@@ -1,0 +1,16 @@
+<!-- <!-- products-breadcrumb 
+ 	<div class="products-breadcrumb">
+		<div class="container">
+			<ul>
+				<li><i class="fa fa-home" aria-hidden="true">
+				</i>
+				{
+					$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+					foreach($crumbs as $crumb){
+    				echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
+    				echo "<span>|</span>";
+				}
+					
+			</ul>
+		</div>
+	</div> -->

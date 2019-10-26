@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>UserList</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+    
+    <div class="container">
+          <div class="row">
+     <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Id</th>
+               <th>Image</th>
+              <th>Slider Name</th>
+              <th>Text</th>
+             
+              <th>Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for allSlider in allSliders %}
+
+            <tr>
+              <td >{{allSlider.id}}</td>
+              <td ><img src="/asset/slider/{{allSlider.image}}" style="width: 500px; height: 200px;" ></td>
+              <td>{{allSlider.name}}</td>
+              <td>{{allSlider.description}}</td> 
+              <td >{{allSlider.created_at  }}</td>
+            </tr>
+            {% endfor %}
+           
+            
+            
+          </tbody>
+          
+         
+        </table>
+      </div>
+</div>
+    </div>
+
+</div>
+{% endblock %}

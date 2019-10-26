@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block style %}
+
+<style type="text/css">
+ table > tbody > tr > td{
+ text-decoration-color: rgb(0,0,0);
+ }
+</style>
+{% endblock %}
+
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>OrderLists</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+    
+    
+     <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+              <th>Name</th>             
+              <th>Product Item</th>
+              <th>Order Qty</th>
+              <th>Product Amount</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Town/City</th>
+              <th>User Email</th>
+              <th>Total AMount</th>
+              <th>Created Date</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for orderList in orderLists %}
+
+            <tr>
+              
+              <td>{{orderList.name}}</td>             
+               <td >
+                    {% set foo = orderList.product_item|split(',') %}
+                    {% for i in foo %}
+
+                   <li>{{ i |trim('[]""') }}</li>
+                    {% endfor %}
+
+               </td>
+               <td >
+                    {% set foo2 = orderList.quantity|split(',') %}
+                    {% for i in foo2 %}
+
+                   <li>{{ i |trim('[]""') }}</li>
+                    {% endfor %}
+
+               </td>
+                <td>
+                     {% set foo1 = orderList.product_amount|split(',') %}
+                    {% for i in foo1 %}
+                      <li>{{ i |trim('[]""') }}</li>
+                    {% endfor %}
+
+                </td>
+              <td>{{orderList.number}}</td>
+              <td>{{orderList.address}}</td>
+              <td>{{orderList.town}}</td>
+              <td class="center">{{orderList.Email}}</td>
+              <td class="center">{{orderList.total |trim('[]""')}}</td>
+              
+              
+             
+              <td >{{orderList.created_at  }}</td>
+              <td>
+                  <form action="/admin/processOrder" method="POST">
+                    <button name="processOrder" value="{{orderList.order_id}}"  class="btn  btn-info">Process</button>
+              </td>
+            </tr>
+            {% endfor %}
+           
+            
+            
+          </tbody>
+          
+         
+        </table>
+      </div>
+
+</div>
+{% endblock %}

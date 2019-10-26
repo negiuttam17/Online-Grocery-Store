@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>Add Product</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+  
+  <div class="agileinfo_mail_grids">
+    
+   <form action="/admin/addProductPost" method="POST" role="form" enctype="multipart/form-data" >
+      <div class="col-md-12">
+        <div class="ibox-content">
+          <input type="hidden" name="id" value="{{editProduct.id}}">
+          <div class="form-group"><label class=" col-sm-2 control-label">Product Name</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="product_name" value="" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Brand Name</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="brand_name" value="" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Quantity</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="quantity" value="" ></div>
+            <div class="clearfix"></div>
+          </div>
+          
+          <div class="form-group"><label class=" col-sm-2 control-label">Stock</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="stock" value="" ></div>
+            <div class="clearfix"></div>
+          </div>
+          
+          <div class="form-group"><label class=" col-sm-2 control-label">Price</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="price" value="" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Offer Price</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="offer_price" value="" ></div>
+            <div class="clearfix"></div>
+          </div> 
+
+           <div class="form-group"><label class=" col-sm-2 control-label">Selcet Category</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="category" required="">
+                {% for categorylist in categoryLists %}
+
+                  <option value="{{categorylist.id}}" >{{categorylist.category_name}} </option>
+
+                {% endfor %}               
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>      
+         
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Selcet Rating</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="rating" required="">
+                <option value="0" >0 star </option>
+                <option value="1" >1 star</option>
+                <option value="2" >2 star</option>
+                <option value="3" >3 star</option>
+                <option value="4" >4 star</option>
+                <option value="5" >5 star</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Selcet Tag</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="tag" required="">
+                <option value="0" >None </option>
+                <option value="1" >Gift Tag</option>
+                <option value="2" >Offer Tag</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div> 
+          <div class="form-group"><label class=" col-sm-2 control-label">Special Featured</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="special" required="">
+                <option value="0" >None </option>
+                <option value="1" >Special offer</option>
+                <option value="2" >Hot offer</option>
+               
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Description</label>
+            <div class="col-sm-4"><textarea rows="12" cols="70" name="description" required="" value = "" class="form-control"></textarea></div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group">
+            Select images: <input type="file" name="files[]" required="" multiple >
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4"><button type="submit" class="btn btn-primary">Submit</button> </div>
+            <div class="clearfix"></div>
+          </div> 
+
+
+        </div>
+      </div>
+  </form>
+</div>
+
+
+</div>
+{% endblock %}

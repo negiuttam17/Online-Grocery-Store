@@ -1,0 +1,37 @@
+
+
+
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>About</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+    <div class="w3l_banner_nav_right">
+<!-- about -->
+{% for about in aboutUS %}
+        <div class="privacy about">
+            <h3>{{about.text}}</h3>
+           
+            <div class="agile_about_grids">
+                <div class="col-md-6 agile_about_grid_right">
+                    <img src="/asset/images/31.jpg" alt=" " class="img-responsive" />
+                </div>
+                <div class="col-md-6 agile_about_grid_left">
+                    <p class="animi">{{about.description}}</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+{% endfor %}
+<!-- //about -->
+        </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>Edit Product</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+  
+  <div class="agileinfo_mail_grids">
+    
+   <form action="/admin/editProductPost" method="POST" role="form" >
+      <div class="col-md-12">
+        <div class="ibox-content">
+          <input type="hidden" name="id" value="{{editProduct.id}}">
+          <div class="form-group"><label class=" col-sm-2 control-label">Product Name</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="product_name" value="{{editProduct.product_name}}" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Brand Name</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="brand_name" value="{{editProduct.brand_name}}" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Quantity</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="quantity" value="{{editProduct.quantity}}" ></div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group"><label class=" col-sm-2 control-label">Stock</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="stock" value="{{editProduct.stock}}" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Price</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="price" value="{{editProduct.price}}" ></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Offer Price</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="offer_price" value="{{editProduct.offer_price}}" ></div>
+            <div class="clearfix"></div>
+          </div>       
+         
+
+         
+          <div class="form-group"><label class=" col-sm-2 control-label">Selcet Rating</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="rating" required="">
+                <option value="0" {% if editProduct.rating == "0" %} selected="selected"{% endif %}>0 star </option>
+                <option value="1" {% if editProduct.rating == "1" %} selected="selected"{% endif %}>1 star</option>
+                <option value="2" {% if editProduct.rating == "2" %} selected="selected"{% endif %}>2 star</option>
+                <option value="3" {% if editProduct.rating == "3" %} selected="selected"{% endif %}>3 star</option>
+                <option value="4" {% if editProduct.rating == "4" %} selected="selected"{% endif %}>4 star</option>
+                <option value="5" {% if editProduct.rating == "5" %} selected="selected"{% endif %}>5 star</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Selcet Tag</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="tag" required="">
+                <option value="0" {% if editProduct.tag == "0" %} selected="selected"{% endif %}>None </option>
+                <option value="1" {% if editProduct.tag == "1" %} selected="selected"{% endif %}>Gift Tag</option>
+                <option value="2" {% if editProduct.tag == "2" %} selected="selected"{% endif %}>Offer Tag</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div> 
+          <div class="form-group"><label class=" col-sm-2 control-label">Special Featured</label>
+            <div class="col-sm-4">
+              <select class="form-control m-b" name="special" required="">
+                <option value="0" {% if editProduct.special == "0" %} selected="selected"{% endif %}>None </option>
+                <option value="1" {% if editProduct.special == "1" %} selected="selected"{% endif %}>Special offer</option>
+                <option value="2" {% if editProduct.special == "2" %} selected="selected"{% endif %}>Hot offer</option>
+               
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group"><label class=" col-sm-2 control-label">Description</label>
+            <div class="col-sm-4"><textarea rows="12" cols="70" name="description" required="" value = "" class="form-control">{{ editProduct.description }}</textarea></div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4"><button type="submit" class="btn btn-primary">Submit</button> </div>
+            <div class="clearfix"></div>
+          </div> 
+
+
+        </div>
+      </div>
+  </form>
+</div>
+
+
+</div>
+{% endblock %}

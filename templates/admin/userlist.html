@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>UserList</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+    
+    <div class="container">
+          <div class="row">
+     <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Id</th>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for userlist in userlists %}
+
+            <tr>
+              <td >{{userlist.User_Id}}</td>
+              <td>{{userlist.Name}}</td>
+              <td>{{userlist.Email}}</td>
+              <td class="center">{{userlist.Address}}</td>
+             
+              <td class="center">{{userlist.Mobile}}</td>
+              
+              
+             
+              <td >{{userlist.created_at  }}</td>
+            </tr>
+            {% endfor %}
+           
+            
+            
+          </tbody>
+          
+         
+        </table>
+      </div>
+</div>
+    </div>
+
+</div>
+{% endblock %}

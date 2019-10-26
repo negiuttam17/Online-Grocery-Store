@@ -1,0 +1,112 @@
+
+
+<div class="w3l_banner_nav_left">
+    <nav class="navbar nav_bottom">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header nav_2">
+              <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+        </div> 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+            {% if auth.allData == '0' %}
+                <ul class="nav navbar-nav nav_1">
+                    <li><a href="/categoryPage/food">Foods</a></li>
+                    <li><a href="/categoryPage/household">Households</a></li>
+                    <li class="dropdown mega-dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>              
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                            <div class="w3ls_list">
+                                <ul>    
+                                    <li><a href="/categoryPage/vegetables">Vegetables</a></li>
+                                    <li><a href="/categoryPage/fruits">Fruits</a></li>
+                                </ul>
+                            </div>                  
+                        </div>              
+                    </li>
+                    <li><a href="/categoryPage/kitchen">Kitchen</a></li>
+                   
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                            <div class="w3ls_list">
+                                <ul>
+                                    <li><a href="/categoryPage/soft_drinks">Soft Drinks</a></li>
+                                    <li><a href="/categoryPage/juice">Juices</a></li>
+                                </ul>
+                            </div>                  
+                        </div>  
+                    </li>
+                    <li><a href="/categoryPage/pet_food">Pet Food</a></li>
+                    <li><a href="/categoryPage/noodles">Noodles</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                            <div class="w3ls_list">
+                                <ul>
+                                    <li><a href="/categoryPage/frozen_snack">Frozen Snacks</a></li>
+                                    
+                                </ul>
+                            </div>                  
+                        </div>  
+                    </li>
+                    <li><a href="/categoryPage/bread_bakery">Bread & Bakery</a></li>
+                </ul>
+            {% else %}
+            {% if auth.sessionOut1 == '1' %}
+                    <ul class="nav navbar-nav nav_1">
+
+                        <li><a href="/admin/userlist">User List</a></li>
+                      
+                        <li class="dropdown mega-dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category page<span class="caret"></span></a>              
+                            <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                                <div class="w3ls_list">
+                                    <ul>    
+                                        
+                                        <li><a href="/admin/newCategory">Add new Category</a></li>
+                                        <li><a href="/admin/allCategory">View all Category</a></li>
+                                    </ul>
+                                </div>                  
+                            </div>              
+                        </li>
+
+                        <li class="dropdown mega-dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Product<span class="caret"></span></a>              
+                            <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                                <div class="w3ls_list">
+                                    <ul>    
+                                        <li><a href="/admin/newProduct">Add New Products</a></li>
+                                        <li><a href="/admin/allProducts">View all Products</a></li>
+                                    
+                                    </ul>
+                                </div>                  
+                            </div>              
+                        </li>
+                        <li class="dropdown mega-dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Slider<span class="caret"></span></a>              
+                            <div class="dropdown-menu mega-dropdown-menu w3ls_list_menu">
+                                <div class="w3ls_list">
+                                    <ul>    
+                                        <li><a href="/admin/addSlider">Add New slider</a></li>
+                                        <li><a href="/admin/allSlider">View all slider</a></li>
+                                    
+                                    </ul>
+                                </div>                  
+                            </div>              
+                        </li> 
+
+                        <li><a href="/admin/orderList">Orders</a></li>                           
+                        <li><a href="/admin/cartoffer">Cart Offer</a></li>                           
+                    </ul>
+                {% else %}
+                {% endif %}
+            {% endif %}
+        </div>
+        <!-- /.navbar-collapse -->             
+    </nav>
+</div>

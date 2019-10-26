@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>{{productPage[0].category_name | lower}}</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+        <div class="w3l_banner_nav_right">
+
+
+            <!-- {% if productPage|length > 0 %}
+             <div class="w3l_banner_nav_right_banner10" style="background: url(/asset/productBanner/{{productPage[0].id}}.jpg) no-repeat; background-size : cover; -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;-ms-background-size:cover;">
+                <h3>Best Deals For New Products<span class="blink_me"></span></h3>
+            </div>
+            {% else %}
+              <div class="w3l_banner_nav_right_banner10" style="background: url(/asset/images/1.jpg) no-repeat; background-size : cover; -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;-ms-background-size:cover;">
+                <h3>No Product Found.</h3>
+            </div>
+            {% endif %} -->
+           
+           
+            <div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_veg">
+                <!-- <h3 class="w3l_fruit" style="margin-top: 30px; margin-bottom: 0px;">{{productPage[0].category_name |upper}}</h3> -->
+                <div class="w3ls_w3l_banner_nav_right_grid1 w3ls_w3l_banner_nav_right_grid1_veg">
+                  {% for product in productPage %}
+                    <div class="col-md-3 w3ls_w3l_banner_left">
+                        <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                            {% if product.tag == 1 %}
+                                <div class="tag"><img src="/asset/images/tag.png" alt=" " class="img-responsive" /></div>
+                            {% elseif product.tag == 2 %}
+                                <div class="agile_top_brand_left_grid_pos">
+                            <img src="/asset/images/offer.png" alt=" " class="img-responsive" /></div>
+                            {% else %}
+                            {% endif %}
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="/productPage/{{product.slug}}/{{product.id}}"><img src="/asset/products/{{product.product_name}}.png" alt=" " class="img-responsive" style="height: 140px" />
+                                            <p>{{product.categoryid}} 
+                                            <p>{{product.product_name}}({{product.quantity}})</p></a>
+                                            <h4 style="text-align: center;">{{product.brand_name}}</h4>
+                                            <h4 style="text-align: center;"> Stock in:{{product.stock}}</h4>
+                                            <h4 style="text-align: center;">${{product.price}}<span>${{product.offer_price}}</span></h4>
+                                        </div>
+                                        <div class="snipcart-details">
+                                            <form action="#" method="post">
+                                                <fieldset>
+                                                    <input type="hidden" name="cmd" value="_cart" />
+                                                    <input type="hidden" name="add" value="1" />
+                                                    <input type="hidden" name="business" value="product.id" />
+                                                    <input type="hidden" name="item_name" value="{{product.product_name}}" />
+                                                    <input type="hidden" name="discount_amount" value="{{product.price - product.offer_price}}" />
+                                                    <input type="hidden" name="amount" value="{{product.price}}" />
+                                                    <input type="hidden" name="currency_code" value="AUD" />
+                                                    <input type="hidden" name="return" value=" " />
+                                                    <input type="hidden" name="cancel_return" value=" " />
+                                                    <input type="submit" name="submit" value="Add to cart" class="button" />
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+
+                    <div class="clearfix"> </div>
+                </div>
+               
+            </div>
+        </div>
+{% endblock %}

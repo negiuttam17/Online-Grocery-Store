@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>CategoryList</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+    
+    
+         <a href="/admin/newProduct" class="btn btn-primary" style="margin: 20px 0 20px 20px;" type="submit">Add New Product</a>
+   
+    <br>
+         
+     <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Id</th>
+               <th>Image</th>
+              <th>Product Name</th>
+              <th>brand name</th>             
+              <th>Quantity</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Offer Price</th>
+              <th>Description</th>
+              <th>Tag</th>
+              <th>Rating</th>
+              <th>Special</th>
+              <th>Created At</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for productList in productLists %}
+              <tr>
+                <td>{{ productList.id }}</td>
+                <td><img src="/asset/products/{{productList.image}}" style="width: 150px;"></td>
+                <td>{{ productList.product_name }}</td>
+                <td>{{ productList.brand_name }}</td>          
+                <td>{{ productList.quantity }}</td> 
+                <td>{{ productList.stock }}</td>          
+                <td>{{ productList.price }}</td>          
+                <td>{{ productList.offer_price }}</td>          
+                <td>{{ productList.description }}</td>          
+                <td>
+                  {%if productList.tag == "1" %}
+                    Gift Tag
+                  {% elseif productList.tag == "2" %}
+                    Offer Tag
+                  {% else %}                  
+                  {% endif %}           
+                </td>          
+                <td>{{ productList.rating }}</td>          
+                <td>{%if productList.special == "1" %}
+                    Special Offer
+                  {% elseif productList.special == "2" %}
+                    Hot Offer
+                  {% else %}                  
+                  {% endif %} </td>          
+                <td>{{ productList.created_at }}</td>
+                <td>
+
+                  <form action="/admin/editProduct" method="POST">
+                    <button name="editProduct" value="{{productList|json_encode()}}"  class="btn  btn-info">Edit</button>
+                  </form>
+                </td>
+                 <td>
+
+                  <form action="/admin/deleteProduct" method="POST">
+                    <button name="deleteProduct" value="{{ productList.id }}"  class="btn  btn-warning">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}      
+          </tbody>        
+        </table>
+      </div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+
+
+
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>My Orders</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+    <div class="w3l_banner_nav_right">
+        <div class="faq">
+            <h3>Your order Lists</h3>
+            <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Product items</th>
+               <th>Product Amount</th>
+               <th>Total AMount</th>
+               <th>Date</th>
+               <th>Status</th>
+                <th>Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+             
+            <tr>
+                  
+                   <td >
+                    {% set foo = order.product_item|split(',') %}
+                    {% for i in foo %}
+
+                  <li>{{ i |trim('[]""') }}</li>
+                    {% endfor %}
+
+               </td>
+                <td>
+                     {% set foo1 = order.product_amount|split(',') %}
+                    {% for i in foo1 %}
+                     <li> {{i|trim('[]""')}} AUD</li>
+                    {% endfor %}
+
+                </td>
+                <td> {{ order.total|trim('[]""')}} AUD</td>
+                
+                    
+                <td>{{ order.created_at}}</td>
+                <td>{{ order.status}}</td>
+              <td>
+                <div class="controls" enctype="multipart/form-data">                      
+                      <select name='status' id='status' required="">
+                          <option value="Confirmed"> Confirmed</option>
+                          <option value="Packing"> Packing</option>
+                          <option value="On Delivery" >On Delivery</option>
+                          <option value="Fulfilled" >Fulfilled</option>
+                        </select>
+                      </div>
+                      </td>
+            {% endfor %}
+           
+             
+        </tr>    
+          </tbody>
+          
+         
+        </table>
+        <form action="/confirm" method="POST">
+                    <button style="float: left;" name="confirm" value="{{order.order_id}}"  class="btn  btn-warning">Process</button>
+                  </form></td>
+            
+      </div>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>My Cart</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+ <div class="w3l_banner_nav_right">
+<!-- about -->
+        <div class="privacy about">
+            <h3>Chec<span>kout</span> </h3>
+           
+
+          <div class="checkout-right">
+                    <h4>Your shopping cart contains: <span>{{checkout.item_number|length}} Products</span></h4>
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>SL No.</th> 
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Product Name</th>                       
+                            <th>Price</th>
+                            <!-- <th>Remove</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                 {% for key in checkout.item_number|keys %}
+                    <tr class="rem{{loop.index}}">
+                        <td class="invert">{{loop.index  }}</td>{% set foo = checkout.item_name[key] |split('-') %}
+                        <td class="invert-image"><a href=""><img src="/asset/products/{{checkout.item_name[key]}}.png" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                             <div class="quantity"> 
+                                <div class="quantity-select">                         
+                                   
+                                    <div class="entry value"><span>{{checkout.item_number[key]}}</span></div>
+                                 
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">
+
+                        {{foo[0]}}</td>
+                        
+                        <td class="invert">{{ checkout.amount[key]   }}</td>
+                       
+                    </tr>
+                   
+ {% endfor %}
+                </tbody>
+
+            </table>
+            </div>
+            <div class="checkout-left"> 
+                 
+  <form action="/paymentPost" method="post" class="creditly-card-form agileinfo_form">
+                <div class="col-md-4 checkout-left-basket">
+
+                    <h4>Continue to basket</h4>
+
+                    <ul>
+                    {% for key in checkout.item_number|keys %}
+                    {% set foo = checkout.item_name[key] |split('-') %}
+                        <li> {{foo[0]}}<i>-</i> <span>{{checkout.amount[key]}} </span></li>
+                         
+                    {% endfor %}
+                        <input type="hidden" name="item_name" value="{{checkout.item_name|json_encode()}}">
+                        <input type="hidden" name="quantity" value="{{checkout.item_number|json_encode()}}">
+                        <input type="hidden" name="item_amount" value="{{checkout.amount|json_encode()}}">
+                        <input type="hidden" name="total" value="{{checkout.total|json_encode()}}">
+                        <li><h2>Total <i>-</i> <span>{{checkout.total}}</span></h2></li>
+                    </ul>
+                 
+                </div>
+
+                
+                <div class="col-md-8 address_form_agile">
+                      <h4>Add a new Details</h4>
+              
+                                    <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                        <div class="information-wrapper">
+                                            <div class="first-row form-group">
+                                                <div class="controls">
+                                                    <label class="control-label">Full name: </label>
+                                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                                                </div>
+                                                <div class="w3_agileits_card_number_grids">
+                                                    <div class="w3_agileits_card_number_grid_left">
+                                                        <div class="controls">
+                                                            <label class="control-label">Mobile number:</label>
+                                                            <input class="form-control" name="number" type="text" placeholder="Mobile number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="w3_agileits_card_number_grid_right">
+                                                        <div class="controls">
+                                                            <label class="control-label">Address: </label>
+                                                         <input class="form-control" type="text" name="address" placeholder="Address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="clear"> </div>
+                                                    <div class="w3_agileits_card_number_grid_right">
+                                                        <div class="controls">
+                                                            <label class="control-label">State: </label>
+                                                         <input class="form-control" type="text" name="landmark" placeholder="State">
+                                                        </div>
+                                                    </div>
+                                                    <div class="clear"> </div>
+                                                </div>
+                                                <div class="controls">
+                                                    <label class="control-label">Town/City: </label>
+                                                 <input class="form-control" name="town" type="text" placeholder="Town/City">
+                                                </div>
+                                                   <!-- <div class="controls">
+                                                            <label class="control-label">Address type: </label>
+                                                     <select class="form-control option-w3ls" required="">
+                                                        <option value="home" selected=""> Home</option>
+                                                        <option value="office" >Office</option>
+                                                        <option value="hotel" >Hotel</option>
+                                                        <option value="restaurant" >Restaurant</option>
+                                                        <option value="shopping" >ShoppingCenter</option>
+                                                        <option value="other" >Others</option>
+                                                     </select>
+                                                    </div>
+                                                    -->                                                 
+                                                    <div class="clearfix"></div>
+                                                  </div>
+                                            </div>
+                                            <button class="submit check_out">Proceed to Payment.</button>
+                                        </div>
+                                    </section>
+                                
+                                    <!-- <div class="checkout-right-basket">
+                                    <a href="payment.html">Make a Payment <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                                    </div> -->
+                    </div>
+            
+                <div class="clearfix"> </div>
+                </form>
+            </div>
+
+        </div>
+<!-- //about -->
+        </div>
+{% endblock %}
+
+
+
+{% block scriptforminijs %}
+
+ <!--quantity-->
+        <script>
+        $('.value-plus').on('click', function(){
+            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+            divUpd.text(newVal);
+        });
+
+        $('.value-minus').on('click', function(){
+            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+            if(newVal>=1) divUpd.text(newVal);
+        });
+        </script>
+    <!--quantity-->
+<script>$(document).ready(function(c) {
+    $('.close{{loop.index  }}').on('click', function(c){
+        $('.rem{{loop.index  }}').fadeOut('slow', function(c){
+            $('.rem{{loop.index  }}').remove();
+        });
+        });   
+    });
+</script>
+<script>
+    paypal.mininicart.reset();
+</script>
+
+{% endblock %}

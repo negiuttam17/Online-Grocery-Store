@@ -1,0 +1,42 @@
+
+
+
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>About</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+    <div class="w3l_banner_nav_right">
+        <div class="faq">
+            <h3>FAQ's</h3>
+            <div class="panel-group w3l_panel_group_faq" id="accordion" role="tablist" aria-multiselectable="true">
+                {% for faq in faqs %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading{{faq.id}}">
+                          <h4 class="panel-title asd">
+                            <a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{faq.id}}" aria-expanded="false" aria-controls="collapse{{faq.id}}">
+                              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>{{faq.title}}
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapse{{faq.id}}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading{{faq.id}}">
+                            <div class="panel-body panel_text">
+                                {{faq.description}}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} 
+              
+            </div>
+        </div>
+    </div>
+{% endblock %}

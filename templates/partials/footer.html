@@ -1,0 +1,86 @@
+{% if auth.allData == '0' %}
+
+<!-- newsletter -->
+    <div class="newsletter">
+        <div class="container">
+            <div class="w3agile_newsletter_left">
+                <h3>sign up for our newsletter</h3>
+            </div>
+            <div class="w3agile_newsletter_right">
+                <form action="#" method="post">
+                    <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                    <input type="submit" value="subscribe now">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+<!-- //newsletter -->
+ 
+
+<!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 w3_footer_grid">
+                <h3>information</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Best Deals</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Short Codes</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>policy info</h3>
+                <ul class="w3_footer_grid_list">
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="">privacy policy</a></li>
+                    <li><a href="">terms of use</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>what in stores</h3>
+
+                <ul class="w3_footer_grid_list">
+                	{% for categoryList in auth.categoryLists | slice(0,5) %}
+                        <li><a href="/categoryPage/{{categoryList.slug}}">{{categoryList.category_name}}</a></li>
+                    {% endfor %}
+                   
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>twitter posts</h3>
+                <ul class="w3_footer_grid_list1">
+                    <li>Call Us on : +123456789 </li>
+                    <li>Address : test road, country</li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+            <div class="agile_footer_grids">
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h4>100% secure payments</h4>
+                        <img src="/asset/images/card.png" alt=" " class="img-responsive" />
+                    </div>
+                </div>
+                <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+                    <div class="w3_footer_grid_bottom">
+                        <h5>connect with us</h5>
+                        <ul class="agileits_social_icons">
+                        	{% for socialIcon in auth.socialIcons  %}
+		                       <li><a href="{{socialIcon.link}}" target="_blank" class="{{socialIcon.slug}}"><i class="fa fa-{{socialIcon.slug}}" aria-hidden="true"></i></a></li>
+		                    {% endfor %}                             
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+           
+        </div>
+    </div>
+<!-- //footer -->
+{% else %}
+  
+
+{% endif %}

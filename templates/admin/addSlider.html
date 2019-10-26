@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>Add Slider</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+  
+  <div class="agileinfo_mail_grids">
+    
+   <form action="/admin/addSliderPost" method="POST" role="form" enctype="multipart/form-data" >
+      <div class="col-md-12">
+        <div class="ibox-content">
+          <input type="hidden" name="id" value="{{editProduct.id}}">
+         <div class="form-group"><label class=" col-sm-2 control-label">Slider Name</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="slider_name" value="" ></div>
+            <div class="clearfix"></div>
+          </div> 
+        <div class="form-group"><label class=" col-sm-2 control-label">Slider text</label>
+            <div class="col-sm-4"><input type="text" class="form-control" name="slider_text" value="" ></div>
+            <div class="clearfix"></div>
+          </div> 
+          <div class="form-group">
+            Slider images: <input type="file" name="files[]" required="" multiple >
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4"><button type="submit" class="btn btn-primary">Submit</button> </div>
+            <div class="clearfix"></div>
+          </div> 
+
+
+        </div>
+      </div>
+  </form>
+</div>
+
+
+</div>
+{% endblock %}

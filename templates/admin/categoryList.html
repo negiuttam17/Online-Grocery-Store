@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/admin/adminpage">Home</a><span>|</span></li>
+                <li>CategoryList</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+  <div class=" w3l_banner_nav_right ">
+    
+    
+         <a href="/admin/newCategory" class="btn btn-primary" style="margin: 20px 0 20px 20px;" type="submit">Add New Category</a>
+   
+    <br>
+         
+     <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Id</th>
+              <th>Category Name</th>
+              <th>Slug</th>             
+              <th>Created Date</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for categoryList in categoryLists %}
+              <tr>
+                <td>{{ categoryList.id }}</td>
+                <td>{{ categoryList.category_name }}</td>
+                <td>{{ categoryList.slug }}</td>          
+                <td>{{ categoryList.created_at }}</td>
+                <td>
+
+                  <form action="/admin/editCategory" method="POST">
+                    <button name="editCategory" value="{{categoryList|json_encode()}}"  class="btn  btn-info">Edit</button>
+                  </form>
+                </td>
+                 <td>
+
+                  <form action="/admin/deleteCategory" method="POST">
+                    <button name="deleteCategory" value="{{ categoryList.id }}"  class="btn  btn-warning">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}      
+          </tbody>        
+        </table>
+      </div>
+
+
+</div>
+{% endblock %}

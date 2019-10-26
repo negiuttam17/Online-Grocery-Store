@@ -1,0 +1,74 @@
+
+
+
+{% extends "layout.html" %}
+{% block title %}<!-- products-breadcrumb -->
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/index">Home</a><span>|</span></li>
+                <li>My Orders</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+    <div class="w3l_banner_nav_right">
+        <div class="faq">
+            <h3>Your order Lists</h3>
+            <div class="table-responsive">
+        <table class="table footable table-striped order-table table-bordered table-hover dataTables-example" >
+          <thead>
+            <tr>
+               <th>Product items</th>
+               <th>Product Amount</th>
+               <th>Total AMount</th>
+               <th>Date</th>
+               <th>Status</th>
+                <th>Cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+             
+            <tr>
+                  
+                   <td >
+                    {% set foo = order.product_item|split(',') %}
+                    {% for i in foo %}
+
+                  <li>{{ i |trim('[]""') }}</li>
+                    {% endfor %}
+
+               </td>
+                <td>
+                     {% set foo1 = order.product_amount|split(',') %}
+                    {% for i in foo1 %}
+                     <li> {{i|trim('[]""')}} AUD</li>
+                    {% endfor %}
+
+                </td>
+                <td> {{ order.total|trim('[]""')}} AUD</td>
+                
+                    
+                <td>{{ order.created_at}}</td>
+                <td>{{ order.status}}</td>
+              <td><form action="/deleteOrder" method="POST">
+                    <button name="deleteOrder" value="{{order.order_id}}"  class="btn  btn-warning">Cancel Purchased</button>
+                  </form></td>
+            </tr>
+            {% endfor %}
+           
+             
+            
+          </tbody>
+          
+         
+        </table>
+      </div>
+            
+        </div>
+    </div>
+{% endblock %}
